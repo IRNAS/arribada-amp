@@ -8,7 +8,7 @@ The network consists of one or more WiFi base-stations and a number of camera un
 
 ### Base station
  * 5GHz sector or omni antenna + 2.4GHz sector
-  * Ubiquity Rocket AC PTMP + Nanostation M2 (11W power draw)
+   * Ubiquity Rocket AC PTMP + Nanostation M2 (11W power draw)
  * Backup battery
  * Battery charger
  * Satellite or other uplink
@@ -17,17 +17,35 @@ The network consists of one or more WiFi base-stations and a number of camera un
  * Raspberry Pi Zero W
  * Raspberry Pi v2 Camera
  * Iot Battery Pack v2
-  * solar charger
-  * 3v3 regualtor module
-  * 5v regulator module
-  * 18V step-up module
-  * 6x 18650 LiPo cells 2600mAh
+   * solar charger
+   * 3v3 regualtor module
+   * 5v regulator module
+   * 18V step-up module
+   * 6x 18650 LiPo cells 2600mAh
  * Nodemcu v3 LP processor + EasyESP firmware
  * Voltaic system 17W solar panel
  * Nanuk 925 rugged enclosure
  * Tree moounting brackets
+ * PIR sensor
  * WiFi 5GHz directional unit
-  * Ubiquiti Nanobeam AC (4.5W when connected, 6.5W under 100Mbps real data load)
+   * Ubiquiti Nanobeam AC (4.5W when connected, 6.5W under 100Mbps real data load)
+   
+### Camera unit power consumption
+We estimate the power consumption of the camera based on the following conditions:
+ * Operate on average 12h a day during daytime
+ * 70% solar cell efficiency due to non-tracked deplyoment
+ * Pi Zero W + Camera consumption: 2W
+ * WiFi Consumption: 6.5W
+ 
+Lets define operation of an hour when active and assume:
+ * WiFi is on for 1 minute every 15 min 
+ * Pi Zero is active all the time
+ * Unit operates for 12h during the day
+ 
+ In this scenario we have average consumption per hour of about 2.5W for 12h daily, requiring total power of 30Wh daily.
+ 
+ Assuming battery capacity is about 60Wh and solar panel is 17W * 70% efficiency * 80% charge efficiency, then solar power delivered is about 10W. Having at least 3 hours of a sunny day the battery is totally charged in that period. 
+ 
  
 #### Software operation
 Nodemcu v3 LP processor with ESP8266 is the main controller for the camera unit and turn on Raspberry Pi when required/scheduled.
