@@ -7,8 +7,8 @@ To establish an effective wireless network in dense forested environments it’s
 The network consists of one or more WiFi base-stations and a number of camera units deployed in the tree tops with a line of sight to the base-station.
 
 ### Base station
- * 5GHz sector or omni antenna, default choice Ubiquity Rocket AC PTMP + antenna
- * 2.4GHz sector or omni antenna, defautl choice Ubiquiti Nanostation M2
+ * 5GHz sector or omni antenna + 2.4GHz sector
+  * Ubiquity Rocket AC PTMP + Nanostation M2 (11W power draw)
  * Backup battery
  * Battery charger
  * Satellite or other uplink
@@ -26,6 +26,8 @@ The network consists of one or more WiFi base-stations and a number of camera un
  * Voltaic system 17W solar panel
  * Nanuk 925 rugged enclosure
  * Tree moounting brackets
+ * WiFi 5GHz directional unit
+  * Ubiquiti Nanobeam AC (4.5W when connected, 6.5W under 100Mbps real data load)
  
 #### Software operation
 Nodemcu v3 LP processor with ESP8266 is the main controller for the camera unit and turn on Raspberry Pi when required/scheduled.
