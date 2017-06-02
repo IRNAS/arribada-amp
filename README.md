@@ -36,6 +36,7 @@ Nodemcu v3 LP processor with ESP8266 is the main controller for the camera unit 
  * Disable AP-failover for some scenarios/features
  * Enable operation without WiFi after wake-up from deep sleep, decide on doing WiFi given a set or conditions
  * Sequencing of devices after deep-sleep, first read values, then do logic or display operations.
+ * Do not go into sleep while external device is powered on (while RPi operates)
  * Module: Wake up external device / turn on GPIO base on one of the following configurable conditions
   * Scheduled wake-up, for example every 30min with additional conditions, for example if some variable is greater or lower then X
   * Configuration via WiFi or UART
