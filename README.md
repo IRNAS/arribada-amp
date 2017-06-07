@@ -6,13 +6,17 @@ To establish an effective wireless network in dense forested environments it’s
 ## Design overview
 The network consists of one or more WiFi base-stations and a number of camera units deployed in the tree tops with a line of sight to the base-station.
 
+![AMP Network](amp-network.png)
+
 ### Base station
  * 5GHz sector or omni antenna + 2.4GHz sector
    * Ubiquity Rocket AC PTMP + Nanostation M2 (11W power draw)
  * Backup battery
  * Battery charger
  * Satellite or other uplink
- 
+
+![AMP Base Station](AMP-Base-Station.png)
+
 ### Camera unit
  * Raspberry Pi Zero W
  * Raspberry Pi v2 Camera
@@ -30,6 +34,8 @@ The network consists of one or more WiFi base-stations and a number of camera un
  * WiFi 5GHz directional unit
    * Ubiquiti Nanobeam AC (4.5W when connected, 6.5W under 100Mbps real data load)
    
+ ![AMP Camera Unit](AMP-Camera-Unit.png)
+ 
 ### Camera unit power consumption
 We estimate the power consumption of the camera based on the following conditions:
  * Operate on average 12h a day during daytime
