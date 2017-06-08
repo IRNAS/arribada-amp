@@ -20,7 +20,7 @@ The network consists of one or more WiFi base-stations and a number of camera un
 ### Camera unit
  * Raspberry Pi Zero W
  * Raspberry Pi v2 Camera
- * Iot Battery Pack v2
+ * [Iot Battery Pack v2](https://github.com/IRNAS/IoT-battery-pack)
    * solar charger
    * 3v3 regualtor module
    * 5v regulator module
@@ -57,13 +57,11 @@ Lets define operation of an hour when active and assume:
 Nodemcu v3 LP processor with ESP8266 is the main controller for the camera unit and turn on Raspberry Pi when required/scheduled.
  
 #### EasyESP custom features
- * Disable AP-failover for some scenarios/features
- * Enable operation without WiFi after wake-up from deep sleep, decide on doing WiFi given a set or conditions
- * Sequencing of devices after deep-sleep, first read values, then do logic or display operations.
- * Do not go into sleep while external device is powered on (while RPi operates)
- * Module: Wake up external device / turn on GPIO base on one of the following configurable conditions
-  * Scheduled wake-up, for example every 30min with additional conditions, for example if some variable is greater or lower then X
-  * Configuration via WiFi or UART
- * Module: Report/listen via LORA (optional and not very required)
+[EasyESP](https://www.letscontrolit.com/wiki) is a firmware for ESP8266 WiFi module implementing support for a range of sensors and may be used with some modifications to operate as a controller for our system, so far we have identified the following features should be implemented:
+
+ * Enable AP mode of operation
+ * Enable/disable sleep via serial port and rules
+ * Add missing libraries
+ * 
  
  
