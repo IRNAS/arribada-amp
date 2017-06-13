@@ -1,0 +1,22 @@
+{"System":{
+"Build": 20000,
+"Unit": 0,
+"Uptime": 4,
+"Free RAM": 22704
+},
+"Sensors":[
+{
+"TaskName": "battery",
+"Voltage,mV": 3973.59,
+"Current,mA": -243.44,
+"Temperature,C": 30.22,
+"SOC,%": 78.07
+},
+{
+"TaskName": "command",
+"rpi-power": 0.00,
+"router-power": 0.00,
+"": 0.00,
+"": 0.00
+}
+]}
