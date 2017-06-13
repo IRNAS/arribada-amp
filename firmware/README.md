@@ -15,30 +15,6 @@ The software operation at a high level is defined at a collaboration of two devi
    * RPi takes control of its own power, so battery pack can not turn it off, turns of itself as configured
    * RPi creates and AP, IoT battery pack joins it
    * RPi fetches measurements from battery pack via network: `<IP of battery pack>/json`
-   ```
-   {"System":{
-"Build": 20000,
-"Unit": 0,
-"Uptime": 4,
-"Free RAM": 22704
-},
-"Sensors":[
-{
-"TaskName": "battery",
-"Voltage,mV": 3973.59,
-"Current,mA": -243.44,
-"Temperature,C": 30.22,
-"SOC,%": 78.07
-},
-{
-"TaskName": "command",
-"rpi-power": 0.00,
-"router-power": 0.00,
-"": 0.00,
-"": 0.00
-}
-]}
-```
    * RPi can configure and re-configure rules on battery pack
    * IoT battery pack goes back to sleep after 120s when RPi booting started
    * RPi can enable 5GHz router for network connectivity
