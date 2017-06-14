@@ -9,3 +9,6 @@ The network is configured mostly with static IP addresses to speed-up the boot t
    * Unit 0: 192.168.1.50
    * Unit 1: 192.168.1.51
    * Unit X: 192.168.1.(50+X)
+   
+### Credentials
+ * View only for settings: aamp/aamp
