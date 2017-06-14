@@ -3,6 +3,9 @@ The network is configured mostly with static IP addresses to speed-up the boot t
 
 ### Devices in the network
  * Main router: 192.168.1.1/24 with DHCP range .100-200
+   * TP-Link WR842ND with LEDE firmware
+   * WiFi Network: aamp-base-2G
+   * WiFi password: ******
  * Base station 5GHz: 192.168.1.30
  * Base station 2.4GHZ: 192.168.1.31
  * Camera units:
