@@ -67,18 +67,19 @@ echo "1" > /sys/class/gpio/gpio27/value
 
 ## RPi Zero W pinout
 The following pinout is used on the devices:
-01 - 3.3V - orange -RTC power
-02 - 5V - red - PIR power
-03 - SDA - yellow - RTC SDA
-04 - 5V - white - power in
-05 - SCL - green - RTC SCL
-06 - GND - black - power in
-07 - GPIO4 - brown - PIR signal
-08 - GPIO14 - UART TX - NC
-09 - GND - black - RTC power
-10 - GPIO15 - UART RX - NC
-11 - GPIO17 - purple connected to battery pack, enable self
-12 - GPIO18 - NC
-13 - GPIO27 - gray - connected to battery pack, enable 5GHz router
-14 - GND - black (or other) - connected to PIR
+
+1. - 3.3V - orange -RTC power
+1. - 5V - red - PIR power
+3. - SDA - yellow - RTC SDA
+4. - 5V - white - power in
+4. - SCL - green - RTC SCL
+6. - GND - black - power in
+7. - GPIO4 - brown - PIR signal
+8. - GPIO14 - UART TX - NC
+9. - GND - black - RTC power
+10. - GPIO15 - UART RX - NC
+11. - GPIO17 - purple connected to battery pack, enable self
+12. - GPIO18 - NC
+13. - GPIO27 - gray - connected to battery pack, enable 5GHz router
+14. - GND - black (or other) - connected to PIR
  
