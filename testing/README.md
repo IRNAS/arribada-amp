@@ -12,3 +12,13 @@ The battery capacity has been evaluated under full-load to experimentally determ
 
  * Extended end of the test (hard cut-off): 2.77V
  * Total capacity to hard cut-off: 19300mAh
+
+## Power consumption analysis
+The following is the proportion of power used in different states, measured as total drain from battery:
+
+ * IoT battery pack in sleep: 500uA @ 3V = 1.5mW
+ * IoT battery pack in standby, wake up every 600s for 60s: 8mA on average @ 3V = 24mW
+ * Raspberry Pi Zero W with USB ethernet and camera: 300mA @ 3V = 900mW
+ * Ubiquiti WiFi Router: 1750mA @ 3V = 5250mW
+ 
+ 
