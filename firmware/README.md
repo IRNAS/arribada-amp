@@ -76,7 +76,7 @@ The following pinout is used on the devices:
 6. - GND - black - power in
 7. - GPIO4 - brown - PIR signal
 8. - GPIO14 - UART TX - NC
-9. - GND - black - RTC power
+9. - GND - blue - RTC power
 10. - GPIO15 - UART RX - NC
 11. - GPIO17 - purple connected to battery pack, enable self
 12. - GPIO18 - NC
