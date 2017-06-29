@@ -82,4 +82,11 @@ The following pinout is used on the devices:
 12. - GPIO18 - NC
 13. - GPIO27 - gray - connected to battery pack, enable 5GHz router
 14. - GND - black (or other) - connected to PIR
+
+## Light sensor cable pinout
+Flat IDC6 cable connector on one side, soldered to TSL light sensor on other side.
+ * Pin 1 - red wire - SCL
+ * Pin 2 - gray - SDA
+ * Pin 5 - gray - VCC
+ * Pin 6 - gray - GND
  
