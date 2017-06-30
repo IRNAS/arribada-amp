@@ -79,9 +79,9 @@ The following pinout is used on the devices:
 9. - GND - blue - RTC power
 10. - GPIO15 - UART RX - NC
 11. - GPIO17 - purple connected to battery pack, enable self
-12. - GPIO18 - NC
-13. - GPIO27 - gray - connected to battery pack, enable 5GHz router
-14. - GND - black (or other) - connected to PIR
+12. - GPIO18 - random color - connected to battery pack, enable 5GHz router
+13. - GPIO27 - gray - connected to battery pack, enable mosfet output
+14. - GND - random color - connected to PIR
 
 ## Light sensor cable pinout
 Flat IDC6 cable connector on one side, soldered to TSL light sensor on other side.
@@ -89,4 +89,14 @@ Flat IDC6 cable connector on one side, soldered to TSL light sensor on other sid
  * Pin 2 - gray - SDA
  * Pin 5 - gray - VCC
  * Pin 6 - gray - GND
+ 
+ ### Function test with Raspbian
+ Testing all the functions of the system is possible with the following setup:
+  * Install Raspbian Lite https://www.raspberrypi.org/downloads/raspbian/
+  * Add file named `ssh` to boot partition to enable headless connectivit
+  * Run `sudo raspi-config` and enable i2c, camera and expand the filesystem 
+  * Install i2c-tools https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/configuring-your-pi-for-i2c
+  * Test PIR sensor, note pin numbers have to be changed: https://diyhacking.com/raspberry-pi-gpio-control/
+  * Test self-enable power on RPi
+  
  
