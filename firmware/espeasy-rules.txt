@@ -6,23 +6,27 @@ On battery#voltage do // undervoltage protection
       gpio,15,0 //turn all off
       gpio,12,0
       gpio,14,0
-      TaskValueSet,3,1,0 // let RPi know it should turn off
+      TaskValueSet,3,1,0
+      TaskValueSet,3,2,0
+      TaskValueSet,3,3,0
+      TaskValueSet,3,4,0
   endif
 endon
 
 On System#Boot do //on boot
-  timerSet,2,120      // set timer1 in 30s
+  timerSet,2,30
+  timerSet,4,3000
 endon
 
-On ldr#lux do // undervoltage protection
+On ldr#lux do // operate under daylight
   if [ldr#lux]>40 // turn things on
     gpio,15,1
     gpio,12,1
-    TaskValueSet,3,1,1 // let RPi know it should be on
+    TaskValueSet,3,1,1 // RPi
   endif
   if [ldr#lux]<10
-    TaskValueSet,3,1,0 // let RPi know it should turn off
-    timerSet,1,45     // go to sleep 120s after sleep condition is met
+    TaskValueSet,3,1,0 // RPi
+    timerSet,1,45     // sleep
   endif
 endon
 
@@ -32,11 +36,10 @@ On Rules#Timer=1 do  // going to sleep
  endif
 endon
 
-On Rules#Timer=2 do  // turn router on
- gpio,14,[var#rpi] // router power
+On Rules#Timer=2 do  // turn router on if pi is on
+ gpio,14,[var#rpi]
  TaskValueSet,3,3,[var#rpi]
  timerSet,3,600 // keep on for 10min
- Event reconnect
 endon
 
 On Rules#Timer=3 do  // going to sleep
@@ -44,15 +47,25 @@ On Rules#Timer=3 do  // going to sleep
    gpio,14,0 // router power
    TaskValueSet,3,3,0
  endif
- timerSet,2,3000 // keep off for 30min
+ timerSet,2,1800 // keep off for 30min
 endon
+
+On Rules#Timer=4 do 
+ Event reconnect
+ timerSet,4,3000
+endon
+
+
 
 On debugon do
  TaskValueSet,3,4,1
+ gpio,14,1 // router power
+ TaskValueSet,3,3,1
 endon
 
 On debugoff do
  TaskValueSet,3,4,0
+ timerSet,3,60 // resume normal operation in 60s
 endon
 
 On reconnect do
