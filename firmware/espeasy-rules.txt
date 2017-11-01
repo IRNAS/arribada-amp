@@ -1,39 +1,58 @@
 // [var#debug] sets debugging level
 // 0 - normal, 1 - 5GHz always on, 2 - ESP always on and previous
 
-On battery#voltage do // undervoltage protection
-  if [battery#voltage]<3200
-      gpio,15,0 //turn all off
-      gpio,12,0
-      gpio,14,0
-      TaskValueSet,3,1,0
-      TaskValueSet,3,2,0
-      TaskValueSet,3,3,0
-      TaskValueSet,3,4,0
-  endif
-endon
-
 On System#Boot do //on boot
-  timerSet,2,30
-  timerSet,4,3000
+  timerSet,1,15
+  timerSet,2,60
+  timerSet,4,360
 endon
 
-On ldr#lux do // operate under daylight
+On Rules#Timer=1 do // every 30s do
+
   if [ldr#lux]>40 // turn things on
     gpio,15,1
     gpio,12,1
     TaskValueSet,3,1,1 // RPi
   endif
+
   if [ldr#lux]<10
     TaskValueSet,3,1,0 // RPi
-    timerSet,1,45     // sleep
+    timerSet,5,15     // go to sleep
   endif
-endon
 
-On Rules#Timer=1 do  // going to sleep
- if [var#debug]<2
-  deepSleep,600 // go to sleep for 600s
- endif
+
+  if [var#debug]>0
+    gpio,15,1
+    gpio,12,1
+    gpio,14,1
+    TaskValueSet,3,1,1
+    TaskValueSet,3,3,1
+    timerSet,2,90 //router timer
+    timerSet,5,0  // go not to sleep
+  endif
+
+  if [debug#analog] > 100
+    gpio,15,1
+    gpio,12,1
+    gpio,14,1
+    TaskValueSet,3,1,1
+    TaskValueSet,3,3,1
+    timerSet,2,90 //router timer
+    timerSet,5,0  // go not to sleep
+  endif
+
+  if [battery#voltage]<3200
+    gpio,15,0
+    gpio,12,0
+    gpio,14,0
+    TaskValueSet,3,1,0
+    TaskValueSet,3,2,0
+    TaskValueSet,3,3,0
+    TaskValueSet,3,4,0
+    deepSleep,600 // go to sleep for 600s
+  endif
+
+ timerSet,1,30 //self-reset
 endon
 
 On Rules#Timer=2 do  // turn router on if pi is on
@@ -43,29 +62,31 @@ On Rules#Timer=2 do  // turn router on if pi is on
 endon
 
 On Rules#Timer=3 do  // going to sleep
- if [var#debug]<1
-   gpio,14,0 // router power
-   TaskValueSet,3,3,0
- endif
- timerSet,2,1800 // keep off for 30min
+ gpio,14,0 // router power
+ TaskValueSet,3,3,0
+ timerSet,2,3000 // keep off for 50min
 endon
 
-On Rules#Timer=4 do 
+On Rules#Timer=4 do
  Event reconnect
  timerSet,4,3000
 endon
 
-
+On Rules#Timer=5 do  // going to sleep
+ if [var#debug]<2
+  gpio,15,0
+  gpio,12,0
+  gpio,14,0
+  deepSleep,600 // go to sleep for 600s
+ endif
+endon
 
 On debugon do
  TaskValueSet,3,4,1
- gpio,14,1 // router power
- TaskValueSet,3,3,1
 endon
 
 On debugoff do
  TaskValueSet,3,4,0
- timerSet,3,60 // resume normal operation in 60s
 endon
 
 On reconnect do
