@@ -1,0 +1,101 @@
+// [var#debug] sets debugging level
+// 0 - normal, 1 - 5GHz always on, 2 - ESP always on and previous
+
+On System#Boot do //on boot
+  timerSet,1,15
+  timerSet,2,60
+  timerSet,4,360
+endon
+
+On Rules#Timer=1 do // every 30s do
+
+  if [ldr#lux]>40 // turn things on
+    gpio,15,1
+    gpio,12,1
+    TaskValueSet,3,1,1 // RPi
+  endif
+
+  if [ldr#lux]<10
+    TaskValueSet,3,1,0 // RPi
+    timerSet,5,15     // go to sleep
+  endif
+
+
+  if [var#debug]>0
+    gpio,15,1
+    gpio,12,1
+    gpio,14,1
+    TaskValueSet,3,1,1
+    TaskValueSet,3,3,1
+    timerSet,2,90 //router timer
+    timerSet,5,0  // go not to sleep
+  endif
+
+  if [debug#analog] > 100
+    gpio,15,1
+    gpio,12,1
+    gpio,14,1
+    TaskValueSet,3,1,1
+    TaskValueSet,3,3,1
+    timerSet,2,90 //router timer
+    timerSet,5,0  // go not to sleep
+  endif
+
+  if [battery#voltage]<3200
+    gpio,15,0
+    gpio,12,0
+    gpio,14,0
+    TaskValueSet,3,1,0
+    TaskValueSet,3,2,0
+    TaskValueSet,3,3,0
+    TaskValueSet,3,4,0
+    deepSleep,600 // go to sleep for 600s
+  endif
+
+ timerSet,1,30 //self-reset
+endon
+
+On Rules#Timer=2 do  // turn router on if pi is on
+ gpio,14,[var#rpi]
+ TaskValueSet,3,3,[var#rpi]
+ timerSet,3,1200 // keep on for 20min
+endon
+
+On Rules#Timer=3 do  // going to sleep
+ gpio,14,0 // router power
+ TaskValueSet,3,3,0
+ timerSet,2,0 // keep off until next reboot, essentially next day
+endon
+
+On Rules#Timer=4 do
+ Event reconnect
+ timerSet,4,3000
+endon
+
+On Rules#Timer=5 do  // going to sleep
+ if [var#debug]<2
+  gpio,15,0
+  gpio,12,0
+  gpio,14,0
+  deepSleep,600 // go to sleep for 600s
+ endif
+endon
+
+On debugon do
+ TaskValueSet,3,4,1
+endon
+
+On debugoff do
+ TaskValueSet,3,4,0
+endon
+
+On reconnect do
+ WifiDisconnect
+ WifiConnect
+endon
+
+On System#Sleep do //on sleep
+ gpio,15,0
+ gpio,12,0
+ gpio,14,0
+endon
